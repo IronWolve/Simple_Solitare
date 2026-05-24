@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1d4l0eprcsbl"]
+
+[ext_resource type="PackedScene" uid="uid://66a2202477b" path="res://scene/card_stack_body.tscn" id="1_wyrnx"]
+[ext_resource type="Script" path="res://scene/goal_stack_body.gd" id="2_ne0mg"]
+
+[node name="goal_stack" instance=ExtResource("1_wyrnx")]
+script = ExtResource("2_ne0mg")
+
+[connection signal="drag_started" from="." to="." method="_on_drag_started"]
+[connection signal="selected" from="." to="." method="_on_selected"]
