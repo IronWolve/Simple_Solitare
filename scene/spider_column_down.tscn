@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scene/card_stack_body.tscn" id="1"]
+[ext_resource type="Script" path="res://scene/spider_column_down.gd" id="2"]
+
+[node name="spider_column_down" instance=ExtResource("1")]
+script = ExtResource("2")
+up_stack = NodePath("")
+card_offset = Vector2(0, 30)
+face_up = false
+
+[connection signal="drag_started" from="." to="." method="_on_drag_started"]
+[connection signal="selected" from="." to="." method="_on_selected"]

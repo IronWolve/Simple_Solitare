@@ -1,0 +1,369 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbb4b24fuhn15"]
+
+[ext_resource type="Script" path="res://scene/card_table.gd" id="1_cql10"]
+[ext_resource type="PackedScene" uid="uid://66a2202477b" path="res://scene/card_stack_body.tscn" id="4_o8if7"]
+[ext_resource type="PackedScene" uid="uid://d1d4l0eprcsbl" path="res://scene/goal_stack_body.tscn" id="8_n4dn6"]
+[ext_resource type="PackedScene" uid="uid://d37cpxb31c1c5" path="res://scene/column_down_stack.tscn" id="9_1iim2"]
+[ext_resource type="PackedScene" uid="uid://bxbktlaabn2ty" path="res://scene/column_up_stack.tscn" id="12_ovnlp"]
+[ext_resource type="Script" path="res://scene/tip_arrow.gd" id="tiparrow"]
+[ext_resource type="Theme" path="res://scene/menu_theme.tres" id="menutheme"]
+
+[sub_resource type="StyleBoxFlat" id="popup_panel_style"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.16, 0.16, 0.18, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.45, 0.5, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_cql10")
+
+[node name="draw_pile" parent="." instance=ExtResource("4_o8if7")]
+position = Vector2(20, 400)
+card_offset = Vector2(1, 0)
+face_up = false
+
+[node name="hand" parent="." instance=ExtResource("4_o8if7")]
+position = Vector2(185, 400)
+card_offset = Vector2(0, 0)
+
+[node name="goal_0" parent="." instance=ExtResource("8_n4dn6")]
+position = Vector2(600, 400)
+card_offset = Vector2(0, 1)
+
+[node name="goal_1" parent="." instance=ExtResource("8_n4dn6")]
+position = Vector2(745, 400)
+card_offset = Vector2(0, 1)
+
+[node name="goal_2" parent="." instance=ExtResource("8_n4dn6")]
+position = Vector2(890, 400)
+card_offset = Vector2(0, 1)
+
+[node name="goal_3" parent="." instance=ExtResource("8_n4dn6")]
+position = Vector2(1035, 400)
+card_offset = Vector2(0, 1)
+
+[node name="col_down_0" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(20, 600)
+up_stack = NodePath("../col_up_0")
+
+[node name="col_up_0" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(20, 600)
+
+[node name="col_down_1" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(165, 600)
+up_stack = NodePath("../col_up_1")
+
+[node name="col_up_1" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(165, 600)
+
+[node name="col_down_2" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(310, 600)
+up_stack = NodePath("../col_up_2")
+
+[node name="col_up_2" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(310, 600)
+
+[node name="col_down_3" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(455, 600)
+up_stack = NodePath("../col_up_3")
+
+[node name="col_up_3" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(455, 600)
+
+[node name="col_down_4" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(600, 600)
+up_stack = NodePath("../col_up_4")
+
+[node name="col_up_4" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(600, 600)
+
+[node name="col_down_5" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(745, 600)
+up_stack = NodePath("../col_up_5")
+
+[node name="col_up_5" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(745, 600)
+
+[node name="col_down_6" parent="." instance=ExtResource("9_1iim2")]
+position = Vector2(890, 600)
+up_stack = NodePath("../col_up_6")
+
+[node name="col_up_6" parent="." instance=ExtResource("12_ovnlp")]
+position = Vector2(890, 600)
+
+[node name="drag_column" parent="." instance=ExtResource("4_o8if7")]
+position = Vector2(-400, -400)
+card_offset = Vector2(0, 45)
+pickable = false
+
+[node name="TipArrow" type="Node2D" parent="."]
+z_index = 500
+script = ExtResource("tiparrow")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="lbl_title" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 32.0
+text = "Simple Solitaire - Klondike v. 9"
+theme_override_font_sizes/font_size = 16
+
+[node name="lbl_timer" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 34.0
+grow_horizontal = 0
+text = "Time: 00:00"
+horizontal_alignment = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="lbl_win" type="Label" parent="UI"]
+visible = false
+mouse_filter = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 64
+
+[node name="bn_new_game" type="Button" parent="UI"]
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 110.0
+offset_bottom = 64.0
+text = "New Game"
+
+[node name="bn_undo" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 36.0
+offset_right = -95.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "Undo"
+
+[node name="bn_draw_toggle" type="Button" parent="UI"]
+offset_left = 210.0
+offset_top = 36.0
+offset_right = 300.0
+offset_bottom = 64.0
+text = "Draw: 3"
+
+[node name="bn_background" type="Button" parent="UI"]
+offset_left = 305.0
+offset_top = 36.0
+offset_right = 425.0
+offset_bottom = 64.0
+text = "Background"
+
+[node name="popup_background" type="PopupPanel" parent="UI"]
+theme_override_styles/panel = SubResource("popup_panel_style")
+size = Vector2(200, 230)
+
+[node name="ColorPicker" type="ColorPicker" parent="UI/popup_background"]
+offset_right = 200.0
+offset_bottom = 230.0
+color = Color(0.05, 0.22, 0.05, 1)
+picker_shape = 2
+
+[node name="bn_deck" type="Button" parent="UI"]
+offset_left = 430.0
+offset_top = 36.0
+offset_right = 510.0
+offset_bottom = 64.0
+text = "Deck"
+
+[node name="popup_deck" type="PopupPanel" parent="UI"]
+theme_override_styles/panel = SubResource("popup_panel_style")
+size = Vector2(180, 270)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/popup_deck"]
+theme = ExtResource("menutheme")
+offset_right = 180.0
+offset_bottom = 270.0
+
+[node name="lbl_back" type="Label" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Card Back"
+horizontal_alignment = 1
+
+[node name="bn_deck_blue" type="Button" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Blue"
+
+[node name="bn_deck_red" type="Button" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Red"
+
+[node name="bn_deck_cowboyback" type="Button" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Cowboy"
+
+[node name="lbl_style" type="Label" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Card Style"
+horizontal_alignment = 1
+
+[node name="bn_deck_normal" type="Button" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Normal"
+
+[node name="bn_deck_cowboy" type="Button" parent="UI/popup_deck/VBoxContainer"]
+layout_mode = 2
+text = "Cowboy"
+
+[node name="bn_style" type="Button" parent="UI"]
+offset_left = 515.0
+offset_top = 36.0
+offset_right = 595.0
+offset_bottom = 64.0
+text = "Game"
+
+[node name="popup_style" type="PopupPanel" parent="UI"]
+theme_override_styles/panel = SubResource("popup_panel_style")
+size = Vector2(180, 150)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/popup_style"]
+theme = ExtResource("menutheme")
+offset_right = 180.0
+offset_bottom = 150.0
+
+[node name="bn_style_klondike" type="Button" parent="UI/popup_style/VBoxContainer"]
+layout_mode = 2
+text = "Klondike"
+
+[node name="bn_style_spider1" type="Button" parent="UI/popup_style/VBoxContainer"]
+layout_mode = 2
+text = "Spider - 1 Suit"
+
+[node name="bn_style_spider2" type="Button" parent="UI/popup_style/VBoxContainer"]
+layout_mode = 2
+text = "Spider - 2 Suit"
+
+[node name="bn_style_spider4" type="Button" parent="UI/popup_style/VBoxContainer"]
+layout_mode = 2
+text = "Spider - 4 Suit"
+
+[node name="bn_restart" type="Button" parent="UI"]
+offset_left = 115.0
+offset_top = 36.0
+offset_right = 205.0
+offset_bottom = 64.0
+text = "Restart"
+
+[node name="popup_restart" type="PopupPanel" parent="UI"]
+theme_override_styles/panel = SubResource("popup_panel_style")
+size = Vector2(160, 90)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/popup_restart"]
+theme = ExtResource("menutheme")
+offset_right = 160.0
+offset_bottom = 90.0
+
+[node name="bn_restart_new" type="Button" parent="UI/popup_restart/VBoxContainer"]
+layout_mode = 2
+text = "New Deal"
+
+[node name="bn_restart_same" type="Button" parent="UI/popup_restart/VBoxContainer"]
+layout_mode = 2
+text = "Same Deal"
+
+[node name="bn_help" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 36.0
+offset_right = -10.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "Help"
+
+[node name="popup_help" type="PopupPanel" parent="UI"]
+theme_override_styles/panel = SubResource("popup_panel_style")
+size = Vector2(560, 380)
+
+[node name="lbl_help" type="Label" parent="UI/popup_help"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 544.0
+offset_bottom = 364.0
+text = "Klondike Solitaire\n\nGoal: move all 52 cards to the four foundation piles, each built up by suit from Ace to King.\n\nTableau: build columns down in alternating colors (red on black, black on red). Move single cards or valid sequences between columns. Only a King may be placed on an empty column.\n\nStock: click the draw pile to deal to the waste; click it when empty to recycle. The Draw button switches between drawing 1 and 3.\n\nClick a playable card to send it to a foundation automatically. Face-down cards flip when exposed.\n\nControls: left mouse drags cards. Right-mouse drag pans the table. Mouse wheel zooms."
+autowrap_mode = 2
+
+[node name="bn_tip" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 36.0
+offset_right = -190.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "Tip"
+
+[node name="lbl_status" type="Label" parent="UI"]
+visible = false
+mouse_filter = 2
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 70.0
+offset_right = 300.0
+offset_bottom = 94.0
+grow_horizontal = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(590, 730)
+
+[connection signal="drag_started" from="draw_pile" to="." method="_on_draw_pile_drag_started"]
+[connection signal="selected" from="draw_pile" to="." method="_on_draw_pile_selected"]
+[connection signal="drag_started" from="hand" to="." method="_on_hand_drag_started"]
+[connection signal="selected" from="hand" to="." method="_on_hand_selected"]
+[connection signal="pressed" from="UI/bn_new_game" to="." method="_on_bn_new_game_pressed"]
+[connection signal="pressed" from="UI/bn_deck" to="." method="_on_bn_deck_pressed"]
+[connection signal="pressed" from="UI/popup_deck/VBoxContainer/bn_deck_blue" to="." method="_on_deck_blue_pressed"]
+[connection signal="pressed" from="UI/popup_deck/VBoxContainer/bn_deck_red" to="." method="_on_deck_red_pressed"]
+[connection signal="pressed" from="UI/popup_deck/VBoxContainer/bn_deck_cowboyback" to="." method="_on_deck_cowboy_back_pressed"]
+[connection signal="pressed" from="UI/popup_deck/VBoxContainer/bn_deck_normal" to="." method="_on_deck_normal_pressed"]
+[connection signal="pressed" from="UI/popup_deck/VBoxContainer/bn_deck_cowboy" to="." method="_on_deck_cowboy_pressed"]
+[connection signal="pressed" from="UI/bn_undo" to="." method="_on_bn_undo_pressed"]
+[connection signal="pressed" from="UI/bn_draw_toggle" to="." method="_on_bn_draw_toggle_pressed"]
+[connection signal="pressed" from="UI/bn_background" to="." method="_on_bn_background_pressed"]
+[connection signal="color_changed" from="UI/popup_background/ColorPicker" to="." method="_on_cpb_background_color_changed"]
+[connection signal="pressed" from="UI/bn_style" to="." method="_on_bn_style_pressed"]
+[connection signal="pressed" from="UI/popup_style/VBoxContainer/bn_style_klondike" to="." method="_on_style_klondike_pressed"]
+[connection signal="pressed" from="UI/popup_style/VBoxContainer/bn_style_spider1" to="." method="_on_style_spider1_pressed"]
+[connection signal="pressed" from="UI/popup_style/VBoxContainer/bn_style_spider2" to="." method="_on_style_spider2_pressed"]
+[connection signal="pressed" from="UI/bn_restart" to="." method="_on_bn_restart_pressed"]
+[connection signal="pressed" from="UI/popup_restart/VBoxContainer/bn_restart_new" to="." method="_on_restart_new_pressed"]
+[connection signal="pressed" from="UI/popup_restart/VBoxContainer/bn_restart_same" to="." method="_on_restart_same_pressed"]
+[connection signal="pressed" from="UI/popup_style/VBoxContainer/bn_style_spider4" to="." method="_on_style_spider4_pressed"]
+[connection signal="pressed" from="UI/bn_help" to="." method="_on_bn_help_pressed"]
+[connection signal="pressed" from="UI/bn_tip" to="." method="_on_bn_tip_pressed"]
